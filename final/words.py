@@ -48,7 +48,7 @@ words = ['electricity', 'donkey', 'hardware', 'xerox', 'transistor', 'computer',
  'destruction', 'expensive', 'painting', 'chicken', 'wishing', 'profession', 
  'hatred', 'possession', 'criticism', 'harmony', 'personality', 'overcome',
  'addition', 'subtraction', 'cipher', 'encryption', 'compression', 'extension', 
- 'blessing', 'meeting', 'difficulty', 'weapon', 'against', 'external', 'internal'
+ 'blessing', 'meeting', 'difficulty', 'weapon', 'against', 'external', 'internal',
  'legend', 'servant', 'secondary', 'license', 'directory', 'statistics', 'generate',
  'attraction', 'sensitivity', 'magnification', 'someone', 'symptom', 'recipe', 
  'service', 'family', 'island', 'planet', 'butterfly', 'diving', 'strength', 'misplace',

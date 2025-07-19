@@ -75,7 +75,9 @@ def game():
     global rorw
     global win
     print("Welcome to Hangman!\nLet's get started.")
-    print(f"{noose}\n")
+    for letter in answer:
+        print("_", end=" ")
+    print(f"\n{noose}\n")
     #start game
     guess()
     #first guess
@@ -120,7 +122,7 @@ def playagain():
         print("Thanks for playing!")
         prevsb = input("Have you played this game before? y/n \n")
         if prevsb == "y":
-            oscore = open("test.txt", "r")
+            oscore = open("scoreboard.txt", "r")
             while True:                           
                 pscore = oscore.readline()   
                 if len(pscore) == 0:             
@@ -142,6 +144,8 @@ def playagain():
     #if invalid input, tally score and record
 
 def main():
+    global answer
+    answer = random.choice(words.words)
     game()
     #play
     global ovscore
