@@ -148,15 +148,20 @@ def playagain():
     #if no more, tally score and record
     else:
         print("Invalid input.")
-        pscore = 0
-        print("Overwriting Scoreboard.")
+        try:
+            with open("scoreboard.txt", "r") as oscore:                          
+                pscore = int(oscore.read().strip())                        
+            oscore.close()
+            print("Scoreboard Found.")
+        except:
+            pscore = 0
+            print("Scoreboard Created.")
         fscore = ovscore + pscore
         scoreboard = open("scoreboard.txt", "w")
         scoreboard.write(str(fscore))
         scoreboard.close()
-        print("New Scoreboard Created.")
-    #if invalid input, tally score and record, old score lost, but no errors
-
+        print("Scoreboard Updated.")
+    #if invalid input, tally score and record
 def main():
     global answer
     answer = random.choice(words.words)
