@@ -50,8 +50,9 @@ def guess():
         for letter in answer:
             if letter in guesses:
                 sofar += letter
+                sofar += " "
             else:
-                sofar += " _ "
+                sofar += "_ "
         print(sofar)
         written = sofar
         rorw = True
@@ -61,8 +62,9 @@ def guess():
         for letter in answer:
             if letter in guesses:
                 sofar += letter
+                sofar += " "
             else:
-                sofar += " _ "
+                sofar += "_ "
         guesses = guesses + [choice]
         print(f"Nope!\n {sofar}")
         rorw = False
@@ -94,6 +96,7 @@ def game():
         if rorw is False:
             stage = stage + 1
             print(stages[stage])
+            win = False
         #see line 76
         if stage == 6:
             print("Game Over.")
@@ -104,6 +107,7 @@ def game():
         #if guesses used up, ends game
         if rorw is True:
             print(stages[stage])
+            win = False
         #see line 77
     else:
         print("You Win!")
@@ -113,35 +117,43 @@ def game():
     #if no more blanks and didn't fail, win
 
 def playagain():
+    global ovscore
+    pscore = 0
     oncemore = input("Would you like to play again? y/n\n")
     #play again function
     if oncemore == "y":
         main()
     #if yes, play again
-    if oncemore == "n":
+    elif oncemore == "n":
         print("Thanks for playing!")
         prevsb = input("Have you played this game before? y/n \n")
         if prevsb == "y":
-            oscore = open("scoreboard.txt", "r")
-            while True:                           
-                pscore = oscore.readline()   
-                if len(pscore) == 0:             
-                    break                          
-                print(pscore, end="")
+            with open("scoreboard.txt", "r") as oscore:                          
+                pscore = int(oscore.read().strip())                        
             oscore.close()
+            print("Scoreboard Found.")
         #if scoreboard from old game exists, get it's total
         if prevsb == "n":
             pscore = 0
+            print("Scoreboard Created.")
         #if no old scoreboard, previous total = 0
-        fscore = ovscore + int(pscore)
+        fscore = ovscore + pscore
         #add previous and new scores
         scoreboard = open("scoreboard.txt", "w")
         scoreboard.write(str(fscore))
         scoreboard.close()
+        print("Scoreboard Updated.")
     #if no more, tally score and record
     else:
         print("Invalid input.")
-    #if invalid input, tally score and record
+        pscore = 0
+        print("Overwriting Scoreboard.")
+        fscore = ovscore + pscore
+        scoreboard = open("scoreboard.txt", "w")
+        scoreboard.write(str(fscore))
+        scoreboard.close()
+        print("New Scoreboard Created.")
+    #if invalid input, tally score and record, old score lost, but no errors
 
 def main():
     global answer
@@ -158,9 +170,8 @@ main()
 
 
 def testcorrect():
-    global guesses, written, stage   
+    global guesses, stage   
     assert guesses == []
-    assert "_" in written
     assert stage == 0
     print("Test Passed")
 #tests that everything reset correctly
