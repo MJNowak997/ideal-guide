@@ -86,8 +86,10 @@ def game():
     if rorw is False:
             stage = stage + 1
             print(stages[stage])
+            win = False
     if rorw is True:
             print(stages[stage])
+            win = False
     #if right or wrong (rorw) is false(incorrect guess), hangs man
     #if right or wrong (rorw) is true(correct guess), shows progress
     while "_" in written:
