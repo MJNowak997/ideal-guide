@@ -175,7 +175,7 @@ def testcorrect():
     global guesses, stage   
     assert guesses == []
     assert stage == 0
-    print("Test Passed")
+    print("Test Passed.")
 #tests that everything reset correctly
 
 testcorrect()
